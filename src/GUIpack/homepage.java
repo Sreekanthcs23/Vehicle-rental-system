@@ -96,6 +96,7 @@ public class homepage extends javax.swing.JPanel {
         jTextArea1.setRows(5);
         jTextArea1.setText("CARS FOR RENT\nWe provide cars for rent anywhere in Kerala in an affordable price for everyone.\nYou can choose the most perfect car for you from the options.\nRENT YOUR CAR\nIf you wish to rent your car, you can do that too!!. Thus you can make a passive income from\ncar\n> NO HIDDEN CHARGES\n> SANITIZED GOOD CONDITION CARS\n> DAMAGE INSURANCE\n> 24 x 7 ASSISTANCE");
         jTextArea1.setToolTipText("");
+        jTextArea1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton1.setText("Find Cars..");
