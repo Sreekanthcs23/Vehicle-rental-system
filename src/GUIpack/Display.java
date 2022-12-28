@@ -14,6 +14,7 @@ public class Display extends JPanel{
     Screen2 screen2;
     LoginScreen login;
     RegisterScreen register;
+    FindCars findcars;
     NewFrame nf;
     public Display(NewFrame nf) {
         this.nf = nf;
@@ -21,7 +22,9 @@ public class Display extends JPanel{
         screen2 = new Screen2(nf,this);
         login = new LoginScreen(nf,this);
         register = new RegisterScreen(nf,this);
-        add(login);
+        findcars = new FindCars(nf,this);
+        nf.state = -1;
+        add(findcars);
     }
     
     public void paintComponent(Graphics g) {
@@ -50,6 +53,10 @@ public class Display extends JPanel{
         if(nf.state == 2 && nf.isLogedin()) {
             removeAll();
             add(screen2);
+            revalidate();
+            repaint();
+        }
+        if(nf.state == -1){
             revalidate();
             repaint();
         }
