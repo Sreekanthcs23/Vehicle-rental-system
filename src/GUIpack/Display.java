@@ -14,7 +14,7 @@ public class Display extends JPanel{
     LoginScreen login;
     RegisterScreen register;
     Homepage2 home2;
-    //Dashboard
+    Dashboard dashboard;
     FindCars findcars;
     RentCar rentcar;
     Profile profile;
@@ -25,7 +25,7 @@ public class Display extends JPanel{
         login = new LoginScreen(nf,this);
         register = new RegisterScreen(nf,this);
         home2 = new Homepage2(nf,this);
-        //dashborsd
+        dashboard = new Dashboard(nf,this);
         findcars = new FindCars(nf,this);
         rentcar = new RentCar(nf,this);
         profile = new Profile(nf,this);
@@ -61,12 +61,12 @@ public class Display extends JPanel{
             revalidate();
             repaint();
         }
-       /* if(nf.state == 4 && nf.isLogedin()) {
+       if(nf.state == 4 && nf.isLogedin()) {
             removeAll();
             add(dashboard);
             revalidate();
             repaint();
-        }*/
+        }
         if(nf.state == 5 && nf.isLogedin()) {
             removeAll();
             add(findcars);
