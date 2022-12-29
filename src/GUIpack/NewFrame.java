@@ -4,6 +4,7 @@
  */
 package GUIpack;
 import javax.swing.*;
+import java.awt.Dimension;
 import java.sql.*;
 /**
  *
@@ -22,6 +23,9 @@ public class NewFrame extends JFrame{
         display = new Display(this);
         add(display);
         setLocationRelativeTo(null);
+        Dimension size = new Dimension(844,686);
+        setPreferredSize(size);
+        setResizable(false);
         pack();
 	setVisible(true);
     }
