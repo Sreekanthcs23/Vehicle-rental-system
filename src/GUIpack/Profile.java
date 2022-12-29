@@ -8,13 +8,18 @@ package GUIpack;
  *
  * @author RIZWAN AT
  */
-public class userdetails extends javax.swing.JPanel {
+public class Profile extends javax.swing.JPanel {
 
     /**
      * Creates new form userdetails
      */
-    public userdetails() {
+    public NewFrame nf;
+    public Display dsp;
+    
+    public Profile(NewFrame nf,Display dsp) {
         initComponents();
+        this.nf = nf;
+        this.dsp = dsp;
     }
 
     /**
@@ -28,9 +33,9 @@ public class userdetails extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        profileBtn = new javax.swing.JButton();
+        findCarBtn = new javax.swing.JButton();
+        rentCarBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -51,15 +56,30 @@ public class userdetails extends javax.swing.JPanel {
         jButton5 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(51, 153, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 0, 255));
 
         jButton1.setText("Dashboard");
 
-        jButton2.setText("Profile");
+        profileBtn.setText("Profile");
+        profileBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                profileBtnActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Find car");
+        findCarBtn.setText("Find car");
+        findCarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                findCarBtnActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Rent car");
+        rentCarBtn.setText("Rent car");
+        rentCarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rentCarBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -69,9 +89,9 @@ public class userdetails extends javax.swing.JPanel {
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(findCarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rentCarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(profileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -80,11 +100,11 @@ public class userdetails extends javax.swing.JPanel {
                 .addGap(154, 154, 154)
                 .addComponent(jButton1)
                 .addGap(35, 35, 35)
-                .addComponent(jButton2)
+                .addComponent(profileBtn)
                 .addGap(37, 37, 37)
-                .addComponent(jButton3)
+                .addComponent(findCarBtn)
                 .addGap(40, 40, 40)
-                .addComponent(jButton4)
+                .addComponent(rentCarBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -245,12 +265,28 @@ public class userdetails extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
+    private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
+        // TODO add your handling code here:
+        nf.state = 7;
+        dsp.render();
+    }//GEN-LAST:event_profileBtnActionPerformed
+
+    private void findCarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findCarBtnActionPerformed
+        // TODO add your handling code here:
+        nf.state = 5;
+        dsp.render();
+    }//GEN-LAST:event_findCarBtnActionPerformed
+
+    private void rentCarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rentCarBtnActionPerformed
+        // TODO add your handling code here:
+        nf.state = 6;
+        dsp.render();
+    }//GEN-LAST:event_rentCarBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton findCarBtn;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -271,5 +307,7 @@ public class userdetails extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JButton profileBtn;
+    private javax.swing.JButton rentCarBtn;
     // End of variables declaration//GEN-END:variables
 }
