@@ -20,7 +20,7 @@ public class NewFrame extends JFrame{
     
     public NewFrame() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        display = new Display(this);
+        display = new Display(this,stm);
         add(display);
         setLocationRelativeTo(null);
         Dimension size = new Dimension(844,686);
@@ -35,7 +35,7 @@ public class NewFrame extends JFrame{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://sql6.freesqldatabase.com:3306/sql6585873","sql6585873","ubIPuhvRVJ");
             stm = con.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT * FROM FavouriteNumber");
+           /* ResultSet rs = stm.executeQuery("SELECT * FROM FavouriteNumber");
             int num;
             String name;
             while(rs.next()) {
@@ -43,7 +43,7 @@ public class NewFrame extends JFrame{
                 num = rs.getInt("Num");
                 System.out.println("Name="+name+" Num="+num);
             }
-            rs.close();
+            rs.close();*/
            // stm.close();
            // con.close();
         }

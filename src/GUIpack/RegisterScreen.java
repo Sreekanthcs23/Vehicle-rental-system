@@ -8,6 +8,7 @@ package GUIpack;
  *
  * @author sreekanth
  */
+import java.sql.*;
 public class RegisterScreen extends javax.swing.JPanel {
 
     /**
@@ -15,10 +16,12 @@ public class RegisterScreen extends javax.swing.JPanel {
      */
     NewFrame nf;
     Display dsp;
-    public RegisterScreen(NewFrame nf,Display dsp) {
+    Statement stm;
+    public RegisterScreen(NewFrame nf,Display dsp,Statement stm) {
         initComponents();
         this.nf = nf;
         this.dsp = dsp;
+        this.stm = stm;
     }
 
     /**

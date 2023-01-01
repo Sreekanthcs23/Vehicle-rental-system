@@ -9,6 +9,7 @@ import java.awt.Graphics;
  *
  * @author sreekanth
  */
+import java.sql.*;
 public class Display extends JPanel{
     Homepage1 home1;
     LoginScreen login;
@@ -19,11 +20,11 @@ public class Display extends JPanel{
     RentCar rentcar;
     Profile profile;
     NewFrame nf;
-    public Display(NewFrame nf) {
+    public Display(NewFrame nf,Statement stm) {
         this.nf = nf;
         home1 = new Homepage1(nf,this);
         login = new LoginScreen(nf,this);
-        register = new RegisterScreen(nf,this);
+        register = new RegisterScreen(nf,this,stm);
         home2 = new Homepage2(nf,this);
         dashboard = new Dashboard(nf,this);
         findcars = new FindCars(nf,this);
