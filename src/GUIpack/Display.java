@@ -11,7 +11,7 @@ import java.awt.Graphics;
  */
 import java.sql.*;
 public class Display extends JPanel{
-    Homepage1 home1;
+    Homepage11 home1;
     LoginScreen login;
     RegisterScreen register;
     Homepage2 home2;
@@ -22,14 +22,14 @@ public class Display extends JPanel{
     NewFrame nf;
     public Display(NewFrame nf,Statement stm) {
         this.nf = nf;
-        home1 = new Homepage1(nf,this);
+        home1 = new Homepage11(nf,this);
         login = new LoginScreen(nf,this);
         register = new RegisterScreen(nf,this,stm);
         home2 = new Homepage2(nf,this);
         dashboard = new Dashboard(nf,this);
         findcars = new FindCars(nf,this);
         rentcar = new RentCar(nf,this);
-        profile = new Profile(nf,this);
+        profile = new Profile(nf,this,stm);
         add(home1);
     }
     

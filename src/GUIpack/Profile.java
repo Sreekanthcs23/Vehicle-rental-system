@@ -3,8 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package GUIpack;
-
+import java.sql.*;
 /**
+ *
  *
  * @author RIZWAN AT
  */
@@ -15,13 +16,50 @@ public class Profile extends javax.swing.JPanel {
      */
     public NewFrame nf;
     public Display dsp;
+    public Statement stm;
     
-    public Profile(NewFrame nf,Display dsp) {
+    public Profile(NewFrame nf,Display dsp,Statement stm) {
         initComponents();
         this.nf = nf;
         this.dsp = dsp;
+        this.stm=stm;
+        init();
+        
     }
 
+    private void init(){
+        String fname="",lname="",email="",location="",district="";
+        String phone="",aadhar="",license="";
+        int currentuser=nf.userid;
+        String query="select * from User where userid=" +currentuser+ "";
+        try{
+            ResultSet rs=stm.executeQuery(query);
+            while(rs.next()){
+                fname=rs.getString("fname");
+                lname=rs.getString("lname");
+                email=rs.getString("email");
+                location=rs.getString("location");
+                district=rs.getString("district");
+                phone=rs.getString("phone");
+                aadhar=rs.getString("aadhar");
+                license=rs.getString("license");
+            }
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        
+        fnamebox.setText(fname);
+        lnamebox.setText(lname);
+        mobilebox.setText(phone);
+        emailbox.setText(email);
+        locationbox.setText(location);
+        districtbox.setText(district);
+        aadharbox.setText(aadhar);
+        licensebox.setText(license);
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,15 +83,15 @@ public class Profile extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        fnamebox = new javax.swing.JTextField();
+        lnamebox = new javax.swing.JTextField();
+        mobilebox = new javax.swing.JTextField();
+        emailbox = new javax.swing.JTextField();
+        locationbox = new javax.swing.JTextField();
+        districtbox = new javax.swing.JTextField();
+        aadharbox = new javax.swing.JTextField();
+        licensebox = new javax.swing.JTextField();
+        updateprofbtn = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 255));
@@ -140,38 +178,43 @@ public class Profile extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel9.setText("License Number");
 
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField1.setText("Enter your first name");
+        fnamebox.setForeground(new java.awt.Color(204, 204, 204));
+        fnamebox.setText("Enter your first name");
 
-        jTextField2.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField2.setText("Enter your last name");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        lnamebox.setForeground(new java.awt.Color(204, 204, 204));
+        lnamebox.setText("Enter your last name");
+        lnamebox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                lnameboxActionPerformed(evt);
             }
         });
 
-        jTextField3.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField3.setText("Enter your mobile number");
+        mobilebox.setForeground(new java.awt.Color(204, 204, 204));
+        mobilebox.setText("Enter your mobile number");
 
-        jTextField4.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField4.setText("Enter your email address");
+        emailbox.setForeground(new java.awt.Color(204, 204, 204));
+        emailbox.setText("Enter your email address");
 
-        jTextField5.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField5.setText("Enter your location ");
+        locationbox.setForeground(new java.awt.Color(204, 204, 204));
+        locationbox.setText("Enter your location ");
 
-        jTextField6.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField6.setText("Enter your district");
+        districtbox.setForeground(new java.awt.Color(204, 204, 204));
+        districtbox.setText("Enter your district");
 
-        jTextField7.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField7.setText("Enter your aadhar no");
+        aadharbox.setForeground(new java.awt.Color(204, 204, 204));
+        aadharbox.setText("Enter your aadhar no");
 
-        jTextField8.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField8.setText("Enter your license no");
+        licensebox.setForeground(new java.awt.Color(204, 204, 204));
+        licensebox.setText("Enter your license no");
 
-        jButton5.setBackground(new java.awt.Color(0, 102, 255));
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setText("Update Profile");
+        updateprofbtn.setBackground(new java.awt.Color(0, 102, 255));
+        updateprofbtn.setForeground(new java.awt.Color(255, 255, 255));
+        updateprofbtn.setText("Update Profile");
+        updateprofbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateprofbtnActionPerformed(evt);
+            }
+        });
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUIpack/images/profile-icon.png"))); // NOI18N
         jLabel10.setText("jLabel10");
@@ -200,21 +243,21 @@ public class Profile extends javax.swing.JPanel {
                                     .addComponent(jLabel9))
                                 .addGap(83, 83, 83)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fnamebox, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(licensebox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lnamebox, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(mobilebox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(emailbox, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(locationbox, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(districtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(aadharbox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(180, 180, 180)
-                                .addComponent(jButton5)))
+                                .addComponent(updateprofbtn)))
                         .addGap(23, 23, 23))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(69, 69, 69)
@@ -231,50 +274,50 @@ public class Profile extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(84, 84, 84)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fnamebox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lnamebox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(mobilebox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(emailbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(locationbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(districtbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(aadharbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(24, 24, 24))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(licensebox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(65, 65, 65)
-                .addComponent(jButton5)
+                .addComponent(updateprofbtn)
                 .addGap(0, 104, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    private void lnameboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lnameboxActionPerformed
+        // TdODO add your handling code here:
+    }//GEN-LAST:event_lnameboxActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
         // TODO add your handling code here:
@@ -300,11 +343,39 @@ public class Profile extends javax.swing.JPanel {
         dsp.render();
     }//GEN-LAST:event_dashboardBtnActionPerformed
 
+    private void updateprofbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateprofbtnActionPerformed
+        // TODO add your handling code here:
+       
+        String fname=fnamebox.getText();
+        String lname=lnamebox.getText();
+        String phone=mobilebox.getText();
+        String email=emailbox.getText();
+        String location=locationbox.getText();
+        String district=districtbox.getText();
+        String aadhar=aadharbox.getText();
+        String license=licensebox.getText();
+        
+        int currentuser=nf.userid;
+        
+        String query="update User set fname=\'" +fname+ "\',lname=\'" +lname+ "\',email=\'" +email+ "\',phone=\'" +phone+ "\',location=\'" +location+ "\',district=\'" +district+ "\',aadhar=\'" +aadhar+ "\',license=\'" +license+ "\' where userid=" +currentuser+ "";
+        try{
+            stm.executeUpdate(query);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        
+        //String query1 = "insert into User(fname,lname,email,phone,location,district,aadhar,license) values(\'"+fname+"\',\'"+lname+"\',\'"+email+"\',"+phone+",\'"+location+"\',\'"+district+"\',"+aadharno+","+license+"")"
+    }//GEN-LAST:event_updateprofbtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField aadharbox;
     private javax.swing.JButton dashboardBtn;
+    private javax.swing.JTextField districtbox;
+    private javax.swing.JTextField emailbox;
     private javax.swing.JButton findCarBtn;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JTextField fnamebox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -316,15 +387,12 @@ public class Profile extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField licensebox;
+    private javax.swing.JTextField lnamebox;
+    private javax.swing.JTextField locationbox;
+    private javax.swing.JTextField mobilebox;
     private javax.swing.JButton profileBtn;
     private javax.swing.JButton rentCarBtn;
+    private javax.swing.JButton updateprofbtn;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,14 +8,14 @@ package GUIpack;
  *
  * @author RIZWAN AT
  */
-public class Homepage1 extends javax.swing.JPanel {
+public class Homepage11 extends javax.swing.JPanel {
 
     /**
      * Creates new form homepage1
      */
     NewFrame nf;
     Display dsp;
-    public Homepage1(NewFrame nf,Display dsp) {
+    public Homepage11(NewFrame nf,Display dsp) {
         initComponents();
         this.nf = nf;
         this.dsp = dsp;

@@ -178,7 +178,7 @@ public class LoginScreen extends javax.swing.JPanel {
         passwordBox.setText("");
         
         String password="";
-        int id;
+        int id=0;
         if(usernameInput.equals("") || passwordInput.equals("")) {
             return;
         }
