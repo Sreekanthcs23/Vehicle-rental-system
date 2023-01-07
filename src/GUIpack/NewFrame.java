@@ -14,7 +14,7 @@ public class NewFrame extends JFrame{
     
     public static int state = 0;
     private boolean logedin = false; 
-    
+    public int userid;
     public static Statement stm;
     Display display;
     
@@ -59,27 +59,6 @@ public class NewFrame extends JFrame{
     
     public void setLogedin(boolean val) {
         logedin = val;
-    }
-    
-    public void login(String usernameInput,String passwordInput) {
-        String password="";
-        if(usernameInput.equals("") || passwordInput.equals("")) {
-            return;
-        }
-        String query = "SELECT Password FROM User WHERE Username = \""+usernameInput+"\"";
-        try {
-            ResultSet rs = stm.executeQuery(query);
-            while(rs.next()) {
-                password = rs.getString("Password");
-            }
-        }catch(Exception e) {
-            System.out.println(e);
-        }
-        if(passwordInput.equals(password)) {
-            setLogedin(true);
-            state = 1;
-            display.render();
-        }
     }
     
     public void logout() {

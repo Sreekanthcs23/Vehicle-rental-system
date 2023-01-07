@@ -172,14 +172,32 @@ public class LoginScreen extends javax.swing.JPanel {
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         // TODO add your handling code here:
-       /* String usernameInput = usernameBox.getText();
+        String usernameInput = usernameBox.getText();
         String passwordInput = passwordBox.getText();
         usernameBox.setText("");
         passwordBox.setText("");
-        nf.login(usernameInput, passwordInput); */
-       nf.setLogedin(true);
-       nf.state = 3;
-       dsp.render();
+        
+        String password="";
+        int id;
+        if(usernameInput.equals("") || passwordInput.equals("")) {
+            return;
+        }
+        String query = "SELECT password,userid FROM User WHERE Username = \""+usernameInput+"\"";
+        try {
+            ResultSet rs = stm.executeQuery(query);
+            while(rs.next()) {
+                password = rs.getString("Password");
+                id = rs.getInt("userid");
+            }
+        }catch(Exception e) {
+            System.out.println(e);
+        }
+        if(passwordInput.equals(password)) {
+            nf.setLogedin(true);
+            nf.userid = id;
+            nf.state = 3;
+            dsp.render();
+        }
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
