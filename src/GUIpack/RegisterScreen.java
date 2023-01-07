@@ -43,9 +43,10 @@ public class RegisterScreen extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         passwordBox = new javax.swing.JPasswordField();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        confirmpassword = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        errormsg = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(844, 686));
 
@@ -64,6 +65,11 @@ public class RegisterScreen extends javax.swing.JPanel {
         usernameBox.setText("Enter username");
         usernameBox.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         usernameBox.setPreferredSize(new java.awt.Dimension(210, 32));
+        usernameBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameBoxActionPerformed(evt);
+            }
+        });
 
         registerBtn.setBackground(new java.awt.Color(0, 204, 51));
         registerBtn.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -97,9 +103,9 @@ public class RegisterScreen extends javax.swing.JPanel {
         passwordBox.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         passwordBox.setPreferredSize(new java.awt.Dimension(210, 32));
 
-        jPasswordField2.setText("jPasswordField2");
-        jPasswordField2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
-        jPasswordField2.setPreferredSize(new java.awt.Dimension(210, 32));
+        confirmpassword.setText("jPasswordField2");
+        confirmpassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        confirmpassword.setPreferredSize(new java.awt.Dimension(210, 32));
 
         jButton1.setBackground(new java.awt.Color(255, 0, 0));
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -140,7 +146,7 @@ public class RegisterScreen extends javax.swing.JPanel {
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(confirmpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(passwordBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(usernameBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -155,7 +161,10 @@ public class RegisterScreen extends javax.swing.JPanel {
                                 .addGap(136, 136, 136))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(187, 187, 187))))))
+                                .addGap(187, 187, 187))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(errormsg, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,8 +186,10 @@ public class RegisterScreen extends javax.swing.JPanel {
                         .addGap(38, 38, 38)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73)
+                        .addComponent(confirmpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(errormsg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(registerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -195,6 +206,29 @@ public class RegisterScreen extends javax.swing.JPanel {
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         // TODO add your handling code here:
+        String usernameInput = usernameBox.getText();
+        String passwordInput = passwordBox.getText();
+        String passwordconfirm = confirmpassword.getText();
+        if(!(passwordInput.equals(passwordconfirm))){
+            errormsg.setText("Entered passwords donnot match, please re-enter");
+            return;
+        }
+        if(usernameInput.equals("") || passwordInput.equals("")){
+            errormsg.setText("username or password cannot be empty");
+            return;
+        }
+        String q1 = "Insert into User (username, password) values(\'"+usernameInput+"\', \'"+passwordInput+"\')";
+        try{
+            stm.executeUpdate(q1); 
+        }
+        catch(SQLIntegrityConstraintViolationException se){
+            errormsg.setText("Username already used. Enter another one");
+            return;
+        }
+        catch(Exception e){
+            System.out.println(e);
+        } 
+        //java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'rizwanat' for key 'username'
         /*String usernameInput = usernameBox.getText();
         String passwordInput = passwordBox.getText();
         nf.register(usernameInput,passwordInput);*/
@@ -213,8 +247,14 @@ public class RegisterScreen extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void usernameBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPasswordField confirmpassword;
+    private javax.swing.JTextField errormsg;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -222,7 +262,6 @@ public class RegisterScreen extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton loginBtn;
     private javax.swing.JPasswordField passwordBox;
