@@ -28,7 +28,7 @@ public class Display extends JPanel{
         home2 = new Homepage2(nf,this);
         dashboard = new Dashboard(nf,this);
         findcars = new FindCars(nf,this);
-        rentcar = new RentCar(nf,this);
+        rentcar = new RentCar(nf,this,stm);
         profile = new Profile(nf,this,stm);
         add(home1);
     }
