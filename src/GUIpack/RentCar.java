@@ -129,9 +129,9 @@ public class RentCar extends javax.swing.JPanel {
 
         jLabel5.setText("Car type");
 
-        fueltypebox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Petrol", "Diesel", "Electrical" }));
+        fueltypebox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Petrol", "Diesel" }));
 
-        cartypebox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sedan", "Hatchback", "Suv" }));
+        cartypebox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sedan", "Hatchback", "Suv", "Van", "Sports_car", " " }));
 
         jLabel6.setText("Mileage");
 
