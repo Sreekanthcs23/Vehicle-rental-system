@@ -66,7 +66,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="140" max="32767" attributes="0"/>
+                      <EmptySpace pref="130" max="32767" attributes="0"/>
                       <Component id="jLabel10" min="-2" pref="200" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                   </Group>
@@ -154,6 +154,7 @@
                       <Component id="findCarBtn" max="32767" attributes="0"/>
                       <Component id="profileBtn" max="32767" attributes="0"/>
                       <Component id="dashboardBtn" max="32767" attributes="0"/>
+                      <Component id="bookingbtn" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               </Group>
@@ -170,6 +171,8 @@
                   <Component id="findCarBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                   <Component id="rentCarBtn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                  <Component id="bookingbtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -206,6 +209,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rentCarBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="bookingbtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="My Bookings"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bookingbtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

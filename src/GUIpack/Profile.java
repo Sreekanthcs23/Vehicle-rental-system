@@ -77,6 +77,7 @@ public class Profile extends javax.swing.JPanel {
         profileBtn = new javax.swing.JButton();
         findCarBtn = new javax.swing.JButton();
         rentCarBtn = new javax.swing.JButton();
+        bookingbtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -127,6 +128,13 @@ public class Profile extends javax.swing.JPanel {
             }
         });
 
+        bookingbtn.setText("My Bookings");
+        bookingbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookingbtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -137,7 +145,8 @@ public class Profile extends javax.swing.JPanel {
                     .addComponent(dashboardBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(findCarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(rentCarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(profileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(profileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bookingbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -151,6 +160,8 @@ public class Profile extends javax.swing.JPanel {
                 .addComponent(findCarBtn)
                 .addGap(40, 40, 40)
                 .addComponent(rentCarBtn)
+                .addGap(40, 40, 40)
+                .addComponent(bookingbtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -248,7 +259,7 @@ public class Profile extends javax.swing.JPanel {
                                             .addComponent(locationbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(districtbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(aadharbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(180, 180, 180)
@@ -363,9 +374,16 @@ public class Profile extends javax.swing.JPanel {
         //String query1 = "insert into User(fname,lname,email,phone,location,district,aadhar,license) values(\'"+fname+"\',\'"+lname+"\',\'"+email+"\',"+phone+",\'"+location+"\',\'"+district+"\',"+aadharno+","+license+"")"
     }//GEN-LAST:event_updateprofbtnActionPerformed
 
+    private void bookingbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingbtnActionPerformed
+        // TODO add your handling code here:
+        nf.state = 8;
+        dsp.render();
+    }//GEN-LAST:event_bookingbtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField aadharbox;
+    private javax.swing.JButton bookingbtn;
     private javax.swing.JButton dashboardBtn;
     private javax.swing.JTextField districtbox;
     private javax.swing.JTextField emailbox;

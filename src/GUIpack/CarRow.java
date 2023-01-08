@@ -4,7 +4,7 @@
  */
 
 package GUIpack;
-
+import java.sql.*;
 /**
  *
  * @author sreekanth
@@ -12,14 +12,22 @@ package GUIpack;
 public class CarRow extends javax.swing.JPanel {
 
     /** Creates new form CarRow */
+    Statement stm;
+    NewFrame nf;
+    Display dsp;
     String carname,fueltype,cartype,location,price;
-    public CarRow(String carname,String cartype,String fueltype,String location,String price) {
+    int carid;
+    public CarRow(int carid,String carname,String cartype,String fueltype,String location,String price,Statement stm,NewFrame nf,Display dsp) {
         initComponents();
+        this.carid = carid;
         this.carname = carname;
         this.cartype = cartype;
         this.fueltype = fueltype; 
         this.location = location;
         this.price = price;
+        this.stm = stm;
+        this.nf = nf;
+        this.dsp = dsp;
         initUI();
     }
 
@@ -39,7 +47,7 @@ public class CarRow extends javax.swing.JPanel {
         cartypeLabel = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         priceLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        bookbtn = new javax.swing.JButton();
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUIpack/images/redcar.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -56,7 +64,12 @@ public class CarRow extends javax.swing.JPanel {
 
         priceLabel.setText("Price");
 
-        jButton1.setText("Book");
+        bookbtn.setText("Book");
+        bookbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -75,7 +88,7 @@ public class CarRow extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(bookbtn)
                         .addGap(28, 28, 28))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,7 +108,7 @@ public class CarRow extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(30, 30, 30)
-                                .addComponent(jButton1)
+                                .addComponent(bookbtn)
                                 .addGap(0, 8, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -113,6 +126,22 @@ public class CarRow extends javax.swing.JPanel {
                         .addGap(27, 27, 27))))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bookbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookbtnActionPerformed
+        // TODO add your handling code here:
+        int userid = nf.userid;
+        String query1 = "update Car set isbooked=\'True\' where carid=" +carid+ "";
+        String query2 = "insert into Booking(carid,userid,price) values(" +carid+ "," +userid+ ",\'" +price+ "\')";
+        try{
+            stm.executeUpdate(query1);
+            stm.executeUpdate(query2);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        nf.state = 8;
+        dsp.render();
+    }//GEN-LAST:event_bookbtnActionPerformed
     
     private void initUI() {
         carnameLabel.setText(carname);
@@ -123,10 +152,10 @@ public class CarRow extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bookbtn;
     private javax.swing.JLabel carnameLabel;
     private javax.swing.JLabel cartypeLabel;
     private javax.swing.JLabel fueltypeLabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel locationLabel;
