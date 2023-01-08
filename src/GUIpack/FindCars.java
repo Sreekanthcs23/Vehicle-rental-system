@@ -8,7 +8,7 @@ package GUIpack;
  *
  * @author sreekanth
  */
-import javax.swing.table.DefaultTableModel;
+import java.sql.*;
 public class FindCars extends javax.swing.JPanel {
 
     /**
@@ -16,10 +16,12 @@ public class FindCars extends javax.swing.JPanel {
      */
     public NewFrame nf;
     public Display dsp;
-    public FindCars(NewFrame nf,Display dsp) {
+    Statement stm;
+    public FindCars(NewFrame nf,Display dsp,Statement stm) {
         initComponents();
         this.nf = nf;
         this.dsp = dsp;
+        this.stm = stm;
     }
 
     /**
@@ -38,14 +40,14 @@ public class FindCars extends javax.swing.JPanel {
         rentCarBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        fueltypeBox = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cartypeBox = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jComboBox4 = new javax.swing.JComboBox<>();
-        jButton5 = new javax.swing.JButton();
+        searchBtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
@@ -114,7 +116,7 @@ public class FindCars extends javax.swing.JPanel {
 
         jLabel2.setText("Fuel type");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Petrol", "Diesel", "Electrical", "Any" }));
+        fueltypeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Petrol", "Diesel", "Electrical", "Any" }));
 
         jLabel3.setText("Duration");
 
@@ -122,16 +124,16 @@ public class FindCars extends javax.swing.JPanel {
 
         jLabel4.setText("Car type");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sedan", "Suv", "Hatchback", "Any" }));
+        cartypeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sedan", "Suv", "Hatchback", "Any" }));
 
         jLabel5.setText("Location");
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Any", "Kollam", "Kochi", "Trivandrum" }));
 
-        jButton5.setText("Search");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                searchBtnActionPerformed(evt);
             }
         });
 
@@ -158,7 +160,7 @@ public class FindCars extends javax.swing.JPanel {
                             .addComponent(jLabel3))
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fueltypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(66, 66, 66)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,9 +169,9 @@ public class FindCars extends javax.swing.JPanel {
                         .addGap(32, 63, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cartypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(39, 39, 39)
-                                .addComponent(jButton5))
+                                .addComponent(searchBtn))
                             .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20))
                     .addGroup(layout.createSequentialGroup()
@@ -194,12 +196,12 @@ public class FindCars extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fueltypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cartypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(jButton5)))
+                        .addComponent(searchBtn)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -215,17 +217,58 @@ public class FindCars extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
-       for(int i=0;i<3;i++)
+        jPanel4.removeAll();
+        String cartype="",fueltype="";
+        String fuelcon = "fueltype like \'%\'";
+        String carcon = "cartype like \'%\'";
+        Object fuelcombo=fueltypeBox.getSelectedItem();
+        if(fuelcombo != null){
+            fueltype=fuelcombo.toString();
+        }
+        Object carcombo=cartypeBox.getSelectedItem();
+        if(carcombo!=null){
+            cartype=carcombo.toString();
+        }
+        
+        if(!(cartype.equals("Any")))
+        {
+            carcon = "cartype = \'" + cartype + "\'";
+        }
+        
+        if(!(fueltype.equals("Any")))
+        {
+            fuelcon = "fueltype = \'" + fueltype + "\'";
+        }
+        
+        String query = "select name,fueltype,cartype,rent from Car where "+fuelcon+" AND "+carcon;
+        
+        try {
+            ResultSet rs = stm.executeQuery(query);
+            while(rs.next())
+            {
+                String cname = rs.getString("name");
+                String ctype = rs.getString("cartype");
+                String ftype = rs.getString("fueltype");
+                String rent = rs.getString("rent");
+                CarRow row = new CarRow(cname,ctype,ftype,"location",rent);
+                jPanel4.add(row);
+            }
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+       /*for(int i=0;i<3;i++)
        {
            CarRow row = new CarRow();
            jPanel4.add(row);
-       }
+       }*/
        jPanel4.revalidate();
        jPanel4.repaint();
        nf.repaint();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_searchBtnActionPerformed
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
         // TODO add your handling code here:
@@ -253,12 +296,11 @@ public class FindCars extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cartypeBox;
     private javax.swing.JButton dashboardBtn;
     private javax.swing.JButton findCarBtn;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> fueltypeBox;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -271,5 +313,6 @@ public class FindCars extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton profileBtn;
     private javax.swing.JButton rentCarBtn;
+    private javax.swing.JButton searchBtn;
     // End of variables declaration//GEN-END:variables
 }
