@@ -181,34 +181,26 @@ public class Profile extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel9.setText("License Number");
 
-        fnamebox.setForeground(new java.awt.Color(204, 204, 204));
-        fnamebox.setText("Enter your first name");
+        fnamebox.setPreferredSize(new java.awt.Dimension(155, 22));
 
-        lnamebox.setForeground(new java.awt.Color(204, 204, 204));
-        lnamebox.setText("Enter your last name");
+        lnamebox.setPreferredSize(new java.awt.Dimension(155, 22));
         lnamebox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lnameboxActionPerformed(evt);
             }
         });
 
-        mobilebox.setForeground(new java.awt.Color(204, 204, 204));
-        mobilebox.setText("Enter your mobile number");
+        mobilebox.setPreferredSize(new java.awt.Dimension(155, 22));
 
-        emailbox.setForeground(new java.awt.Color(204, 204, 204));
-        emailbox.setText("Enter your email address");
+        emailbox.setPreferredSize(new java.awt.Dimension(155, 22));
 
-        locationbox.setForeground(new java.awt.Color(204, 204, 204));
-        locationbox.setText("Enter your location ");
+        locationbox.setPreferredSize(new java.awt.Dimension(155, 22));
 
-        districtbox.setForeground(new java.awt.Color(204, 204, 204));
-        districtbox.setText("Enter your district");
+        districtbox.setPreferredSize(new java.awt.Dimension(155, 22));
 
-        aadharbox.setForeground(new java.awt.Color(204, 204, 204));
-        aadharbox.setText("Enter your aadhar no");
+        aadharbox.setPreferredSize(new java.awt.Dimension(155, 22));
 
-        licensebox.setForeground(new java.awt.Color(204, 204, 204));
-        licensebox.setText("Enter your license no");
+        licensebox.setPreferredSize(new java.awt.Dimension(155, 22));
 
         updateprofbtn.setBackground(new java.awt.Color(0, 102, 255));
         updateprofbtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -246,16 +238,16 @@ public class Profile extends javax.swing.JPanel {
                                     .addComponent(jLabel9))
                                 .addGap(83, 83, 83)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fnamebox, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(licensebox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lnamebox, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(fnamebox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(licensebox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lnamebox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(mobilebox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(emailbox, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(locationbox, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(districtbox, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(aadharbox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(emailbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(locationbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(districtbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(aadharbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()

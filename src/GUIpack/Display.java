@@ -25,11 +25,13 @@ public class Display extends JPanel{
         home1 = new Homepage11(nf,this);
         register = new RegisterScreen(nf,this,stm);
         home2 = new Homepage2(nf,this);
-        dashboard = new Dashboard(nf,this);
+        dashboard = new Dashboard(nf,this,stm);
+        findcars = new FindCars(nf,this,stm);
+        dashboard = new Dashboard(nf,this,stm);
         findcars = new FindCars(nf,this,stm);
         rentcar = new RentCar(nf,this,stm);
         profile = new Profile(nf,this,stm);
-        login = new LoginScreen(nf,this,profile);
+        login = new LoginScreen(nf,this,profile,dashboard);
         add(home1);
     }
     
