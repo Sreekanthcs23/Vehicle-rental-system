@@ -38,6 +38,7 @@ public class RentCar extends javax.swing.JPanel {
         profileBtn = new javax.swing.JButton();
         findCarBtn = new javax.swing.JButton();
         rentCarBtn = new javax.swing.JButton();
+        bookingbtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -90,6 +91,13 @@ public class RentCar extends javax.swing.JPanel {
             }
         });
 
+        bookingbtn.setText("My Bookings");
+        bookingbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookingbtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -100,7 +108,8 @@ public class RentCar extends javax.swing.JPanel {
                     .addComponent(rentCarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(findCarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(profileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(dashboardBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(dashboardBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bookingbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27))
         );
         jPanel1Layout.setVerticalGroup(
@@ -114,6 +123,8 @@ public class RentCar extends javax.swing.JPanel {
                 .addComponent(findCarBtn)
                 .addGap(49, 49, 49)
                 .addComponent(rentCarBtn)
+                .addGap(49, 49, 49)
+                .addComponent(bookingbtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -191,7 +202,7 @@ public class RentCar extends javax.swing.JPanel {
                                     .addComponent(modelbox)
                                     .addComponent(regnobox)
                                     .addComponent(pricebox))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(78, 78, 78))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -303,8 +314,15 @@ public class RentCar extends javax.swing.JPanel {
         
     }//GEN-LAST:event_submitbtnActionPerformed
 
+    private void bookingbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingbtnActionPerformed
+        // TODO add your handling code here:
+        nf.state = 8;
+        dsp.render();
+    }//GEN-LAST:event_bookingbtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bookingbtn;
     private javax.swing.JTextField carnamebox;
     private javax.swing.JComboBox<String> cartypebox;
     private javax.swing.JButton dashboardBtn;

@@ -19,6 +19,7 @@ public class Display extends JPanel{
     FindCars findcars;
     RentCar rentcar;
     Profile profile;
+    Bookings bookings;
     NewFrame nf;
     public Display(NewFrame nf,Statement stm) {
         this.nf = nf;
@@ -31,6 +32,7 @@ public class Display extends JPanel{
         findcars = new FindCars(nf,this,stm);
         rentcar = new RentCar(nf,this,stm);
         profile = new Profile(nf,this,stm);
+        bookings = new Bookings(nf,this,stm);
         login = new LoginScreen(nf,this,profile,dashboard);
         add(home1);
     }
@@ -85,6 +87,13 @@ public class Display extends JPanel{
         if(nf.state == 7 && nf.isLogedin()) {
             removeAll();
             add(profile);
+            revalidate();
+            repaint();
+        }
+        if(nf.state == 8 && nf.isLogedin()){
+            removeAll();
+            bookings.init();
+            add(bookings);
             revalidate();
             repaint();
         }

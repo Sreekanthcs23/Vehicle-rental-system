@@ -36,6 +36,7 @@ public class Homepage2 extends javax.swing.JPanel {
         profileBtn = new javax.swing.JButton();
         findCarBtn = new javax.swing.JButton();
         rentCarBtn = new javax.swing.JButton();
+        bookingsbtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -85,6 +86,13 @@ public class Homepage2 extends javax.swing.JPanel {
             }
         });
 
+        bookingsbtn.setText("My Bookings");
+        bookingsbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookingsbtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -95,8 +103,9 @@ public class Homepage2 extends javax.swing.JPanel {
                     .addComponent(dashboardBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(profileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(findCarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(rentCarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                    .addComponent(rentCarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bookingsbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,6 +118,8 @@ public class Homepage2 extends javax.swing.JPanel {
                 .addComponent(findCarBtn)
                 .addGap(38, 38, 38)
                 .addComponent(rentCarBtn)
+                .addGap(38, 38, 38)
+                .addComponent(bookingsbtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -317,8 +328,15 @@ public class Homepage2 extends javax.swing.JPanel {
         dsp.render();
     }//GEN-LAST:event_logoutBtnActionPerformed
 
+    private void bookingsbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingsbtnActionPerformed
+        // TODO add your handling code here:
+        nf.state = 8;
+        dsp.render();
+    }//GEN-LAST:event_bookingsbtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bookingsbtn;
     private javax.swing.JButton dashboardBtn;
     private javax.swing.JButton findCarBtn;
     private javax.swing.JButton findCarBtn2;

@@ -49,7 +49,7 @@
                                           <Component id="districtbox" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="aadharbox" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="61" max="32767" attributes="0"/>
+                                      <EmptySpace pref="51" max="32767" attributes="0"/>
                                       <Component id="jLabel10" min="-2" pref="174" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -152,6 +152,7 @@
                       <Component id="findCarBtn" max="32767" attributes="0"/>
                       <Component id="rentCarBtn" max="32767" attributes="0"/>
                       <Component id="profileBtn" alignment="0" max="32767" attributes="0"/>
+                      <Component id="bookingbtn" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="46" max="32767" attributes="0"/>
               </Group>
@@ -168,6 +169,8 @@
                   <Component id="findCarBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="rentCarBtn" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="bookingbtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -204,6 +207,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rentCarBtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="bookingbtn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="My Bookings"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bookingbtnActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

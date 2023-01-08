@@ -38,6 +38,7 @@ public class FindCars extends javax.swing.JPanel {
         profileBtn = new javax.swing.JButton();
         findCarBtn = new javax.swing.JButton();
         rentCarBtn = new javax.swing.JButton();
+        bookingbtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         fueltypeBox = new javax.swing.JComboBox<>();
@@ -84,6 +85,13 @@ public class FindCars extends javax.swing.JPanel {
             }
         });
 
+        bookingbtn.setText("My Bookings");
+        bookingbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookingbtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -94,7 +102,8 @@ public class FindCars extends javax.swing.JPanel {
                     .addComponent(dashboardBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(findCarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(profileBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(rentCarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(rentCarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bookingbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -108,6 +117,8 @@ public class FindCars extends javax.swing.JPanel {
                 .addComponent(findCarBtn)
                 .addGap(42, 42, 42)
                 .addComponent(rentCarBtn)
+                .addGap(42, 42, 42)
+                .addComponent(bookingbtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -166,7 +177,7 @@ public class FindCars extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jLabel4))
-                        .addGap(32, 63, Short.MAX_VALUE)
+                        .addGap(32, 121, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cartypeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,7 +223,7 @@ public class FindCars extends javax.swing.JPanel {
                 .addComponent(jLabel6)
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addContainerGap(155, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -242,7 +253,7 @@ public class FindCars extends javax.swing.JPanel {
             fuelcon = "fueltype = \'" + fueltype + "\'";
         }
         
-        String query = "select name,fueltype,cartype,rent from Car where "+fuelcon+" AND "+carcon;
+        String query = "select carid,name,fueltype,cartype,rent from Car where isbooked=\'False\' and "+fuelcon+" AND "+carcon+ "";
         
         try {
             ResultSet rs = stm.executeQuery(query);
@@ -252,7 +263,8 @@ public class FindCars extends javax.swing.JPanel {
                 String ctype = rs.getString("cartype");
                 String ftype = rs.getString("fueltype");
                 String rent = rs.getString("rent");
-                CarRow row = new CarRow(cname,ctype,ftype,"location",rent);
+                int carid = rs.getInt("carid");
+                CarRow row = new CarRow(carid,cname,ctype,ftype,"location",rent,stm,nf,dsp);
                 jPanel4.add(row);
             }
         }
@@ -294,8 +306,15 @@ public class FindCars extends javax.swing.JPanel {
         dsp.render();
     }//GEN-LAST:event_dashboardBtnActionPerformed
 
+    private void bookingbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingbtnActionPerformed
+        // TODO add your handling code here:
+        nf.state = 8;
+        dsp.render();
+    }//GEN-LAST:event_bookingbtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bookingbtn;
     private javax.swing.JComboBox<String> cartypeBox;
     private javax.swing.JButton dashboardBtn;
     private javax.swing.JButton findCarBtn;
