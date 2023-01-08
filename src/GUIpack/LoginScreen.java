@@ -17,11 +17,13 @@ public class LoginScreen extends javax.swing.JPanel {
     public NewFrame nf;
     public Display dsp;
     public Statement stm;
-    public LoginScreen(NewFrame nf,Display dsp) {
+    Profile prf;
+    public LoginScreen(NewFrame nf,Display dsp,Profile prf) {
         initComponents();
         this.nf = nf;
         this.dsp = dsp;
         this.stm = nf.stm;
+        this.prf = prf;
     }
 
     /**
@@ -195,6 +197,7 @@ public class LoginScreen extends javax.swing.JPanel {
         if(passwordInput.equals(password)) {
             nf.setLogedin(true);
             nf.userid = id;
+            prf.init();
             nf.state = 3;
             dsp.render();
         }

@@ -23,15 +23,15 @@ public class Profile extends javax.swing.JPanel {
         this.nf = nf;
         this.dsp = dsp;
         this.stm=stm;
-        init();
         
     }
 
-    private void init(){
+    public void init(){
         String fname="",lname="",email="",location="",district="";
         String phone="",aadhar="",license="";
         int currentuser=nf.userid;
         String query="select * from User where userid=" +currentuser+ "";
+        System.out.println(query);
         try{
             ResultSet rs=stm.executeQuery(query);
             while(rs.next()){
@@ -43,6 +43,8 @@ public class Profile extends javax.swing.JPanel {
                 phone=rs.getString("phone");
                 aadhar=rs.getString("aadhar");
                 license=rs.getString("license");
+                System.out.println("helo"+fname+lname);
+                System.out.println(rs.getString("fname"));
             }
         }
         catch(Exception e){
@@ -57,6 +59,7 @@ public class Profile extends javax.swing.JPanel {
         districtbox.setText(district);
         aadharbox.setText(aadhar);
         licensebox.setText(license);
+        
         
     }
     
