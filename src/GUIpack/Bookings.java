@@ -103,7 +103,7 @@ public class Bookings extends javax.swing.JPanel {
                         .addComponent(rentcarbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(findcarbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(profilebtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,8 +129,8 @@ public class Bookings extends javax.swing.JPanel {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
@@ -179,12 +179,14 @@ public class Bookings extends javax.swing.JPanel {
     public void init(){
         jPanel1.removeAll();
         int currentuser = nf.userid;
+        int carid;
         String carname="",cartype="",fueltype="";
         String location="",rent="",fname="",phone="",email="";
-        String query="select C.name,C.cartype,C.fueltype,U.location,C.rent,U.fname,U.phone,U.email from Car C,User U,Booking B where B.userid = " +currentuser+ " and B.carid=C.carid and C.ownerid=U.userid";
+        String query="select C.carid,C.name,C.cartype,C.fueltype,U.location,C.rent,U.fname,U.phone,U.email from Car C,User U,Booking B where B.userid = " +currentuser+ " and B.carid=C.carid and C.ownerid=U.userid";
         try{
             ResultSet rs=stm.executeQuery(query);
             while(rs.next()){
+                carid = rs.getInt("C.carid");
                 carname=rs.getString("C.name");
                 cartype=rs.getString("C.cartype");
                 fueltype=rs.getString("C.fueltype");
@@ -193,7 +195,7 @@ public class Bookings extends javax.swing.JPanel {
                 fname=rs.getString("U.fname");
                 phone=rs.getString("U.phone");
                 email=rs.getString("U.email");
-                Carbook cb=new Carbook(carname,cartype,fueltype,location,rent,fname,phone,email);
+                Carbook cb=new Carbook(carid,carname,cartype,fueltype,location,rent,fname,phone,email,stm);
                 jPanel1.add(cb);
                 
             }

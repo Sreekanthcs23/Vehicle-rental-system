@@ -33,7 +33,7 @@ public class Display extends JPanel{
         rentcar = new RentCar(nf,this,stm);
         profile = new Profile(nf,this,stm);
         bookings = new Bookings(nf,this,stm);
-        login = new LoginScreen(nf,this,profile,dashboard);
+        login = new LoginScreen(nf,this,profile);
         add(home1);
     }
     
@@ -68,6 +68,7 @@ public class Display extends JPanel{
         }
        if(nf.state == 4 && nf.isLogedin()) {
             removeAll();
+            dashboard.init();
             add(dashboard);
             revalidate();
             repaint();
