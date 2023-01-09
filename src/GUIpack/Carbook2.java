@@ -9,17 +9,13 @@ package GUIpack;
  *
  * @author sreekanth
  */
-import java.sql.*;
-public class Carbook extends javax.swing.JPanel {
+public class Carbook2 extends javax.swing.JPanel {
 
     /** Creates new form CarRow */
     String carname,fueltype,cartype,location,price;
     String name,phone,email;
-    Statement stm;
-    int carid;
-    public Carbook(int carid,String carname,String cartype,String fueltype,String location,String price,String name,String phone,String email,Statement stm) {
+    public Carbook2(String carname,String cartype,String fueltype,String location,String price,String name,String phone,String email) {
         initComponents();
-        this.carid = carid;
         this.carname = carname;
         this.cartype = cartype;
         this.fueltype = fueltype; 
@@ -28,7 +24,6 @@ public class Carbook extends javax.swing.JPanel {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.stm = stm;
         initUI();
     }
 
@@ -54,7 +49,6 @@ public class Carbook extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         emaillabel = new javax.swing.JLabel();
         phonelabel = new javax.swing.JLabel();
-        finishBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 204, 204));
         setToolTipText("");
@@ -75,7 +69,7 @@ public class Carbook extends javax.swing.JPanel {
         priceLabel.setText("Price");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setText("Owner Details");
+        jLabel2.setText("Booked by");
 
         namelabel.setText("name");
 
@@ -98,13 +92,6 @@ public class Carbook extends javax.swing.JPanel {
         emaillabel.setText("email");
 
         phonelabel.setText("phone");
-
-        finishBtn.setText("Finish");
-        finishBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                finishBtnActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -133,12 +120,9 @@ public class Carbook extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(namelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(emaillabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(phonelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(finishBtn))
+                    .addComponent(phonelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,9 +139,15 @@ public class Carbook extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(carnameLabel)
                             .addComponent(cartypeLabel))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(phonelabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(emaillabel)
+                        .addGap(22, 22, 22))
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(fueltypeLabel)
                             .addComponent(jLabel6))
@@ -165,14 +155,7 @@ public class Carbook extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(locationLabel)
                             .addComponent(priceLabel))
-                        .addGap(23, 23, 23))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(phonelabel)
-                            .addComponent(finishBtn))
-                        .addGap(18, 18, 18)
-                        .addComponent(emaillabel)
-                        .addGap(22, 22, 22))))
+                        .addGap(23, 23, 23))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,19 +163,6 @@ public class Carbook extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void finishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishBtnActionPerformed
-        // TODO add your handling code here:
-        String query1 = "update Car set isbooked = \'False\' where carid = "+carid;
-        try
-        {
-            stm.executeUpdate(query1);
-        }
-        catch(Exception e)
-        {
-            System.out.println(e);
-        }
-    }//GEN-LAST:event_finishBtnActionPerformed
     
     private void initUI() {
         carnameLabel.setText(carname);
@@ -210,7 +180,6 @@ public class Carbook extends javax.swing.JPanel {
     private javax.swing.JLabel carnameLabel;
     private javax.swing.JLabel cartypeLabel;
     private javax.swing.JLabel emaillabel;
-    private javax.swing.JButton finishBtn;
     private javax.swing.JLabel fueltypeLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
