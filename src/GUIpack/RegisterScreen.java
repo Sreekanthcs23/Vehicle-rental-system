@@ -232,8 +232,8 @@ public class RegisterScreen extends javax.swing.JPanel {
         /*String usernameInput = usernameBox.getText();
         String passwordInput = passwordBox.getText();
         nf.register(usernameInput,passwordInput);*/
-        nf.setLogedin(true);
-        nf.state = 3;
+       // nf.setLogedin(true);
+        nf.state = 1;
         dsp.render();
     }//GEN-LAST:event_registerBtnActionPerformed
 

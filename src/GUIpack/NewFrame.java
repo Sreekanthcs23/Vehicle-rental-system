@@ -16,16 +16,17 @@ public class NewFrame extends JFrame{
     private boolean logedin = false; 
     public int userid;
     public static Statement stm;
+    public static Statement stm2;
     Display display;
     
     public NewFrame() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        display = new Display(this,stm);
+        display = new Display(this,stm,stm2);
         add(display);
         setLocationRelativeTo(null);
         Dimension size = new Dimension(844,686);
-        setPreferredSize(size);
-        setResizable(false);
+        //setPreferredSize(size);
+        //setResizable(false);
         pack();
 	setVisible(true);
     }
@@ -35,6 +36,7 @@ public class NewFrame extends JFrame{
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://sql6.freesqldatabase.com:3306/sql6585873","sql6585873","ubIPuhvRVJ");
             stm = con.createStatement();
+            stm2 = con.createStatement();
            /* ResultSet rs = stm.executeQuery("SELECT * FROM FavouriteNumber");
             int num;
             String name;

@@ -49,6 +49,8 @@ public class CarRow extends javax.swing.JPanel {
         priceLabel = new javax.swing.JLabel();
         bookbtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 204, 204));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUIpack/images/redcar.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
 
