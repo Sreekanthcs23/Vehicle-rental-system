@@ -59,9 +59,10 @@ public class RentCar extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         errorbox = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(255, 204, 204));
         setPreferredSize(new java.awt.Dimension(844, 686));
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 255));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 255));
 
         dashboardBtn.setText("Dashboard");
         dashboardBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -259,24 +260,29 @@ public class RentCar extends javax.swing.JPanel {
 
     private void profileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBtnActionPerformed
         // TODO add your handling code here:
+        errorbox.setText("");
         nf.state = 7;
         dsp.render();
+        
     }//GEN-LAST:event_profileBtnActionPerformed
 
     private void findCarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findCarBtnActionPerformed
         // TODO add your handling code here:
+        errorbox.setText("");
         nf.state = 5;
         dsp.render();
     }//GEN-LAST:event_findCarBtnActionPerformed
 
     private void rentCarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rentCarBtnActionPerformed
         // TODO add your handling code here:
+        errorbox.setText("");
         nf.state = 6;
         dsp.render();
     }//GEN-LAST:event_rentCarBtnActionPerformed
 
     private void dashboardBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dashboardBtnActionPerformed
         // TODO add your handling code here:
+        errorbox.setText("");
         nf.state = 4;
         dsp.render();
     }//GEN-LAST:event_dashboardBtnActionPerformed
@@ -303,10 +309,11 @@ public class RentCar extends javax.swing.JPanel {
         }
         int currentowner = nf.userid;
         
-        String query="insert into Car (name,cartype,model,fueltype,mileage,rent,regno,ownerid) values(\'" +name+ "\',\'" +cartype+ "\',\'" +modelyear+ "\',\'" +fueltype+ "\',\'" +mileage+ "\',\'" +price+ "\',\'" +regno+ "\'," +currentowner+ ")";
+        String query="insert into Car (name,cartype,model,fueltype,mileage,rent,regno,isbooked,ownerid) values(\'" +name+ "\',\'" +cartype+ "\',\'" +modelyear+ "\',\'" +fueltype+ "\',\'" +mileage+ "\',\'" +price+ "\',\'" +regno+ "\', \'False\'," +currentowner+ ")";
         
         try{
             stm.executeUpdate(query);
+            errorbox.setText("Successfully submitted!");
         }
         catch(Exception e){
             System.out.println(e);
@@ -316,6 +323,7 @@ public class RentCar extends javax.swing.JPanel {
 
     private void bookingbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingbtnActionPerformed
         // TODO add your handling code here:
+        errorbox.setText("");
         nf.state = 8;
         dsp.render();
     }//GEN-LAST:event_bookingbtnActionPerformed

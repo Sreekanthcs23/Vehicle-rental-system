@@ -184,6 +184,7 @@ public class Carbook extends javax.swing.JPanel {
     private void finishBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishBtnActionPerformed
         // TODO add your handling code here:
         String query1 = "update Car set isbooked = \'False\' where carid = "+carid;
+        String query2 = "Delete from Booking where carid=" +carid;
         try
         {
             stm.executeUpdate(query1);
